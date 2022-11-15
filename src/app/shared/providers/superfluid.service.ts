@@ -140,7 +140,103 @@ export class SuperfluidService {
         return result;
     }
 
+    async getNetFlow(account: string, superToken: string) {
+        if (this.sf == undefined) {
+            await this.initFramework();
+        }
 
+        const result = await this.flow.getNetFlow({
+            superToken: superToken,
+            account: account,
+            providerOrSigner: this.wallet.signer!,
+        });
+        return result;
+    }
+    async getAccountFlowInfo(account: string, superToken: string) {
+        if (this.sf == undefined) {
+            await this.initFramework();
+        }
+
+        const result = await this.flow.getAccountFlowInfo({
+            superToken: superToken,
+            account: account,
+            providerOrSigner: this.wallet.signer!,
+        });
+        return result;
+    }
+
+    //ACL Usage
+
+    async createFlowByOperator(sender: string, flowRate: string, receiver: string, superToken: string, data: string) {
+        if (this.sf == undefined) {
+            await this.initFramework();
+        }
+        const createFlowOperation = this.flow.createFlowByOperator({
+            sender: sender,
+            flowRate: flowRate,
+            receiver: receiver,
+            superToken: superToken,
+            userData: data
+
+        });
+
+        this.operations.push(createFlowOperation);
+    }
+    async updateFlowByOperator(sender: string, flowRate: string, receiver: string, superToken: string, data: string) {
+        if (this.sf == undefined) {
+            await this.initFramework();
+        }
+        const FlowOperation = this.flow.updateFlowByOperator({
+            sender: sender,
+            flowRate: flowRate,
+            receiver: receiver,
+            superToken: superToken,
+            userData: data
+
+        });
+
+        this.operations.push(FlowOperation);
+    }
+    async deleteFlowByOperator(sender: string, flowRate: string, receiver: string, superToken: string, data: string) {
+        if (this.sf == undefined) {
+            await this.initFramework();
+        }
+        const FlowOperation = this.flow.deleteFlowByOperator({
+            sender: sender,
+            flowRate: flowRate,
+            receiver: receiver,
+            superToken: superToken,
+            userData: data
+
+        });
+
+        this.operations.push(FlowOperation);
+    }
+    async updateFlowOperatorPermissions(flowOperator: string, permissions: number, flowRateAllowance: string, superToken: string) {
+        if (this.sf == undefined) {
+            await this.initFramework();
+        }
+
+        const result = await this.flow.updateFlowOperatorPermissions({
+            flowOperator: flowOperator,
+            permissions: permissions, // should enter 1-7
+            flowRateAllowance: flowRateAllowance,
+            superToken: superToken
+        });
+        return result;
+    }
+
+    async revokeFlowOperatorWithFullControl(flowOperator: string, superToken: string) {
+        if (this.sf == undefined) {
+            await this.initFramework();
+        }
+
+        const result = await this.flow.revokeFlowOperatorWithFullControl({
+            flowOperator: flowOperator,
+            superToken: superToken
+        });
+        return result;
+    }
 
     async greet() {
         let greet = await this.greeterContract.greet();
