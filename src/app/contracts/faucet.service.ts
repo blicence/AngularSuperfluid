@@ -16,25 +16,19 @@ export class FaucetService {
 
     constructor(provider: DefaultProviderService, private wallet: WalletProviderService, private http: HttpClient) {
         this.faucetContract = new ethers.Contract(
-            wallet.currentConfig.contracts.Faucet,
+            wallet.currentConfig.superToken.fUSDC,
             Faucet.abi,
             provider.provider
         );
     }
 
-
-
-    async dripUSDC() {
-        const tokenAddress = environment.config.contracts.USDC
-        await this.drip(tokenAddress)
+    async mint() {
+        let amount = 1000000 * 10 ** 6;
+        let amountSuper = 1000 * 10 ** 18;
+        await this.faucetContract.connect(this.wallet.signer)['mint(uint256)'](amount);
     }
 
-    async dripWrappedNativeToken() {
-        const tokenAddress = environment.config.contracts.WrappedNative
-        await this.drip(tokenAddress)
-    }
 
-    async drip(token: string) {
-        await this.faucetContract.connect(this.wallet.signer).drip(token)
-    }
+
+
 }
