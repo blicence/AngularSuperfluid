@@ -36,7 +36,7 @@ export class FaucetService {
     }
     async approve() {
         await this.faucetContract.connect(this.wallet.signer).approve(
-            environment.superToken.fUSDCx,
+            environment.config.superToken.fUSDCx,
             constants.MaxUint256
         )
     }
