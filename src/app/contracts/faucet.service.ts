@@ -6,6 +6,7 @@ import SuperToken from '../artifacts/SuperToken.json'
 import { environment } from '../../environments/environment';
 import { DefaultProviderService } from '../shared/providers/default-provider.service';
 import { WalletProviderService } from '../shared/providers/wallet-provider.service';
+import { AbiItem } from 'web3-utils';
 
 @Injectable({
     providedIn: 'root'
