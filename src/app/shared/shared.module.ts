@@ -19,6 +19,7 @@ import { AppTopBarComponent } from './layout/app-topbar/app.topbar.component';
 
 import { ConfigService } from './layout/service/app.config.service';
 import { MenuService } from './layout/service/app.menu.service';
+import { SuperfluidService } from './providers/superfluid.service';
 
 
 @NgModule({
@@ -55,7 +56,7 @@ import { MenuService } from './layout/service/app.menu.service';
         ReactiveFormsModule,
         PrimengModule,
     ],
-    providers: [GlobalAlertService, MenuService,
+    providers: [GlobalAlertService, MenuService,SuperfluidService,
         ConfigService,],
 })
 export class SharedModule { }

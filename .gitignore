@@ -5,7 +5,8 @@
 /tmp
 /out-tsc
 /bazel-out
-
+/docs
+/doc
 # Node
 /node_modules
 npm-debug.log
