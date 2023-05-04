@@ -1,0 +1,10 @@
+<div class="relative flex flex-row w-full h-full font-sans" [ngClass]="['text' + defaultInv,   'bg-gray-200']">
+	<div class="flex flex-col w-full h-auto mt-10 overflow-y-auto">
+	 
+		<main class="flex-1"> 
+			<custom-settings></custom-settings>
+            <ng-content></ng-content> 
+		</main>
+
+	</div>
+</div>

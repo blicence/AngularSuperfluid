@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
+  roundedComponentTotal: 100,
   environmentName: 'Avalanche Testnet C-Chain',
   jsonRpcUrl: 'https://api.avax-test.network/ext/bc/C/rpc',
   config: {
@@ -16,6 +17,7 @@ export const environment = {
     },
     networkParams: {
       chainId: '0xA869',
+      chainIdNumber: 43113,
       chainName: 'Avalanche Testnet C-Chain',
       nativeCurrency: {
         name: 'Avalanche',
